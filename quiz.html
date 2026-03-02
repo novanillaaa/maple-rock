@@ -1,0 +1,846 @@
+<style>
+/* ═══════════════════════════════════════════════════════════════
+♡ CUSTOMIZATION ZONE - Edit these variables to change the look!
+═══════════════════════════════════════════════════════════════ */
+:root {
+/* COLORS - Pretty Blue Romantic Palette */
+--quiz-bg: #0a0d14; /* Main background (deep night blue) */
+--quiz-card-bg: #111827; /* Question card background */
+--quiz-card-border: #1e3a5f; /* Card border color */
+--quiz-accent: #60a5fa; /* Primary accent (soft sky blue) */
+--quiz-accent-hover: #93c5fd; /* Accent hover state */
+--quiz-accent-glow: rgba(96, 165, 250, 0.35); /* Glow effect color */
+--quiz-accent-secondary: #a78bfa; /* Secondary accent (soft lavender) */
+--quiz-text: #e2e8f0; /* Main text color */
+--quiz-text-muted: #94a3b8; /* Secondary/muted text */
+--quiz-answer-bg: #0f172a; /* Answer option background */
+--quiz-answer-hover: #1e293b; /* Answer hover background */
+--quiz-answer-selected: #1e3a5f; /* Selected answer background */
+--quiz-answer-border: #334155; /* Answer border */
+--quiz-progress-bg: #1e293b; /* Progress bar background */
+--quiz-result-gradient-1: #3b82f6; /* Result gradient start */
+--quiz-result-gradient-2: #1e40af; /* Result gradient middle */
+--quiz-result-gradient-3: #7c3aed; /* Result gradient end (purple hint) */
+
+/* FONTS - Use Google Fonts or web-safe fonts */
+--quiz-font-display: 'Cormorant Garamond', Georgia, serif; /* Headings - romantic serif */
+--quiz-font-body: 'Nunito', 'Segoe UI', sans-serif; /* Body text - soft & readable */
+
+/* SIZING */
+--quiz-max-width: 620px; /* Maximum quiz width */
+--quiz-border-radius: 12px; /* Rounded corners */
+--quiz-padding: 2rem; /* Internal padding */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+CORE STYLES - Edit with caution below this line!
+═══════════════════════════════════════════════════════════════ */
+
+/* Google Fonts Import - Change these if using different fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+.quiz-container {
+font-family: var(--quiz-font-body);
+background: var(--quiz-bg);
+background-image:
+radial-gradient(ellipse at 20% 20%, rgba(96, 165, 250, 0.08) 0%, transparent 50%),
+radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+color: var(--quiz-text);
+min-height: 100vh;
+padding: 2rem 1rem;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+}
+
+.quiz-wrapper {
+width: 100%;
+max-width: var(--quiz-max-width);
+}
+
+/* Header */
+.quiz-header {
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.quiz-title {
+font-family: var(--quiz-font-display);
+font-size: clamp(1.8rem, 5vw, 2.6rem);
+font-weight: 600;
+letter-spacing: 0.02em;
+margin-bottom: 0.5rem;
+background: linear-gradient(135deg, var(--quiz-text) 0%, var(--quiz-accent) 50%, var(--quiz-accent-secondary) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.quiz-subtitle {
+font-size: 0.95rem;
+color: var(--quiz-text-muted);
+font-style: italic;
+}
+
+/* Decorative heart */
+.heart-divider {
+color: var(--quiz-accent);
+font-size: 1.2rem;
+margin: 1rem 0;
+opacity: 0.6;
+}
+
+/* Progress Bar */
+.progress-container {
+margin-bottom: 1.5rem;
+}
+
+.progress-text {
+display: flex;
+justify-content: space-between;
+font-size: 0.8rem;
+color: var(--quiz-text-muted);
+margin-bottom: 0.5rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+
+.progress-bar {
+height: 5px;
+background: var(--quiz-progress-bg);
+border-radius: 3px;
+overflow: hidden;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(--quiz-accent), var(--quiz-accent-secondary));
+border-radius: 3px;
+transition: width 0.4s ease;
+box-shadow: 0 0 12px var(--quiz-accent-glow);
+}
+
+/* Question Card */
+.question-card {
+background: var(--quiz-card-bg);
+border: 1px solid var(--quiz-card-border);
+border-radius: var(--quiz-border-radius);
+padding: var(--quiz-padding);
+margin-bottom: 1.5rem;
+animation: fadeIn 0.4s ease;
+box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.question-number {
+font-size: 0.75rem;
+color: var(--quiz-accent);
+text-transform: uppercase;
+letter-spacing: 0.15em;
+margin-bottom: 0.75rem;
+}
+
+.question-text {
+font-family: var(--quiz-font-display);
+font-size: 1.35rem;
+font-weight: 600;
+line-height: 1.5;
+margin-bottom: 1.5rem;
+}
+
+/* Answer Options */
+.answers-list {
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+}
+
+.answer-option {
+background: var(--quiz-answer-bg);
+border: 1px solid var(--quiz-answer-border);
+border-radius: calc(var(--quiz-border-radius) - 4px);
+padding: 1rem 1.25rem;
+cursor: pointer;
+transition: all 0.25s ease;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.answer-option:hover {
+background: var(--quiz-answer-hover);
+border-color: var(--quiz-accent);
+transform: translateX(4px);
+}
+
+.answer-option.selected {
+background: var(--quiz-answer-selected);
+border-color: var(--quiz-accent);
+box-shadow: 0 0 20px var(--quiz-accent-glow);
+}
+
+.answer-letter {
+width: 30px;
+height: 30px;
+border: 1px solid var(--quiz-answer-border);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.8rem;
+font-weight: 600;
+color: var(--quiz-text-muted);
+flex-shrink: 0;
+transition: all 0.25s ease;
+}
+
+.answer-option:hover .answer-letter,
+.answer-option.selected .answer-letter {
+border-color: var(--quiz-accent);
+color: var(--quiz-accent);
+background: rgba(96, 165, 250, 0.1);
+}
+
+.answer-text {
+font-size: 1rem;
+line-height: 1.4;
+}
+
+/* Navigation */
+.quiz-nav {
+display: flex;
+justify-content: space-between;
+gap: 1rem;
+}
+
+.nav-btn {
+font-family: var(--quiz-font-body);
+padding: 0.9rem 2rem;
+border-radius: var(--quiz-border-radius);
+font-size: 0.9rem;
+cursor: pointer;
+transition: all 0.25s ease;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+
+.nav-btn.prev {
+background: transparent;
+border: 1px solid var(--quiz-answer-border);
+color: var(--quiz-text-muted);
+}
+
+.nav-btn.prev:hover:not(:disabled) {
+border-color: var(--quiz-text);
+color: var(--quiz-text);
+}
+
+.nav-btn.next {
+background: linear-gradient(135deg, var(--quiz-accent), var(--quiz-accent-secondary));
+border: none;
+color: #0a0d14;
+font-weight: 600;
+margin-left: auto;
+}
+
+.nav-btn.next:hover:not(:disabled) {
+box-shadow: 0 0 25px var(--quiz-accent-glow);
+transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+opacity: 0.4;
+cursor: not-allowed;
+}
+
+/* Results Screen */
+.results-screen {
+text-align: center;
+animation: fadeIn 0.5s ease;
+}
+
+.results-card {
+background: linear-gradient(145deg, var(--quiz-result-gradient-1), var(--quiz-result-gradient-2), var(--quiz-result-gradient-3));
+border-radius: var(--quiz-border-radius);
+padding: 2.5rem var(--quiz-padding);
+margin-bottom: 2rem;
+position: relative;
+overflow: hidden;
+box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+}
+
+.results-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
+pointer-events: none;
+}
+
+.results-label {
+font-size: 0.85rem;
+text-transform: uppercase;
+letter-spacing: 0.2em;
+opacity: 0.9;
+margin-bottom: 0.5rem;
+}
+
+.results-subtitle {
+font-size: 1rem;
+opacity: 0.85;
+margin-bottom: 1rem;
+font-style: italic;
+}
+
+.results-character {
+font-family: var(--quiz-font-display);
+font-size: clamp(2rem, 6vw, 3rem);
+font-weight: 700;
+margin-bottom: 1.5rem;
+text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.results-description {
+font-size: 1.05rem;
+line-height: 1.7;
+opacity: 0.95;
+max-width: 90%;
+margin: 0 auto;
+}
+
+.results-image {
+width: 160px;
+height: 160px;
+border-radius: 50%;
+object-fit: cover;
+border: 4px solid rgba(255,255,255,0.25);
+margin-bottom: 1.5rem;
+box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.restart-btn {
+font-family: var(--quiz-font-body);
+background: var(--quiz-card-bg);
+border: 1px solid var(--quiz-card-border);
+color: var(--quiz-text);
+padding: 1rem 2.5rem;
+border-radius: var(--quiz-border-radius);
+font-size: 0.9rem;
+cursor: pointer;
+transition: all 0.25s ease;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+
+.restart-btn:hover {
+border-color: var(--quiz-accent);
+box-shadow: 0 0 20px var(--quiz-accent-glow);
+}
+
+/* Start Screen */
+.start-screen {
+text-align: center;
+animation: fadeIn 0.5s ease;
+}
+
+.start-description {
+color: var(--quiz-text-muted);
+font-size: 1rem;
+line-height: 1.6;
+margin-bottom: 2rem;
+max-width: 90%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.start-btn {
+font-family: var(--quiz-font-body);
+background: linear-gradient(135deg, var(--quiz-accent), var(--quiz-accent-secondary));
+border: none;
+color: #0a0d14;
+padding: 1.1rem 3rem;
+border-radius: var(--quiz-border-radius);
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.25s ease;
+text-transform: uppercase;
+letter-spacing: 0.15em;
+}
+
+.start-btn:hover {
+box-shadow: 0 0 30px var(--quiz-accent-glow);
+transform: translateY(-3px);
+}
+
+/* Hidden state */
+.hidden {
+display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+.quiz-container {
+padding: 1rem 0.75rem;
+}
+
+.question-card {
+padding: 1.5rem;
+}
+
+.nav-btn {
+padding: 0.8rem 1.5rem;
+font-size: 0.85rem;
+}
+}
+</style>
+
+<div class="quiz-container">
+<div class="quiz-wrapper">
+
+<!-- Start Screen -->
+<div id="startScreen" class="start-screen">
+<div class="quiz-header">
+<h1 class="quiz-title">Which Character Is Your Lover?</h1>
+<div class="heart-divider">♡</div>
+<p class="quiz-subtitle">Discover your perfect match...</p>
+</div>
+<p class="start-description">
+Answer ten questions about your heart's desires, your deepest fears, and your romantic fantasies.
+We'll reveal which character was destined to be yours.
+</p>
+<button class="start-btn" onclick="startQuiz()">Find Your Lover</button>
+</div>
+
+<!-- Quiz Screen -->
+<div id="quizScreen" class="hidden">
+<div class="quiz-header">
+<h1 class="quiz-title">Which Character Is Your Lover?</h1>
+</div>
+
+<div class="progress-container">
+<div class="progress-text">
+<span>Question <span id="currentQ">1</span> of <span id="totalQ">10</span></span>
+<span id="progressPercent">0%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill" style="width: 0%"></div>
+</div>
+</div>
+
+<div class="question-card" id="questionCard">
+<!-- Question content loads here -->
+</div>
+
+<div class="quiz-nav">
+<button class="nav-btn prev" id="prevBtn" onclick="prevQuestion()" disabled>← Back</button>
+<button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+</div>
+</div>
+
+<!-- Results Screen -->
+<div id="resultsScreen" class="results-screen hidden">
+<!-- Results load here -->
+</div>
+
+<!-- Tiebreaker Screen -->
+<div id="tiebreakerScreen" class="results-screen hidden">
+<!-- Tiebreaker loads here -->
+</div>
+
+</div>
+</div>
+
+<script>
+  const characters = [
+  {
+    name: "Shane Brooks",
+    description: "Your love is quiet but all-consuming. They'll memorize every detail about you and love you in ways you didn't know you needed. With them, silence is never awkward—it's intimate.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+1" // Replace with your image URL!
+  },
+  {
+    name: "Chase Thompson", 
+    description: "They'll sweep you off your feet with grand gestures and passionate declarations. Life with them is never boring—every day is an adventure, and you're the only one they want by their side.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+2" // Replace with your image URL!
+  },
+  {
+    name: "Tate Tyler",
+    description: "Dangerous and devoted in equal measure. They'd burn the world down for you and rebuild it however you wanted. Their love is intense, possessive, and utterly consuming.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+3" // Replace with your image URL!
+  },
+  {
+    name: "Kendall McAllister",
+    description: "Soft mornings and gentle touches—they love you in the small moments. A steady presence, a warm embrace, a love that feels like coming home after a long journey.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+4" // Replace with your image URL!
+  },
+  {
+    name: "Kian McAllister",
+    description: "Sharp wit meets tender heart. They'll challenge you, tease you, and drive you crazy—but beneath the banter is someone who would do anything to see you smile.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+5" // Replace with your image URL!
+  },
+  {
+    name: "Riley Harlow",
+    description: "They're the calm in your chaos, the voice of reason when everything falls apart. Patient and understanding, they love you through every version of yourself.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+6" // Replace with your image URL!
+  },
+  {
+    name: "Ethan Carter",
+    description: "Mysterious and magnetic, they keep you guessing. Just when you think you've figured them out, they surprise you. The chase never ends—and neither does the passion.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+7" // Replace with your image URL!
+  },
+  {
+    name: "Bradie Scott",
+    description: "Protective to a fault, they'd fight anyone who hurt you. Their love is fierce and loyal—once you have their heart, nothing could ever take it from you.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+8" // Replace with your image URL!
+  },
+  {
+    name: "Adrian Crowe",
+    description: "Creative soul meets hopeless romantic. They'll write you poetry, paint you portraits, and love you like you're a masterpiece. With them, love is art.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+9" // Replace with your image URL!
+  },
+  {
+    name: "Kyren Marks",
+    description: "They're trouble wrapped in a pretty package, and you wouldn't have it any other way. Life with them is messy, chaotic, and absolutely exhilarating.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+10" // Replace with your image URL!
+  },
+  {
+    name: "Thomas Berry",
+    description: "Old soul, timeless love. They believe in fate, in destiny, in the two of you finding each other across any lifetime. Their devotion transcends everything.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+11" // Replace with your image URL!
+  },
+  {
+    name: "Cameron Coleman",
+    description: "They'll make you laugh until you cry and hold you when you actually do. Best friend turned lover—they know you better than you know yourself, and love every part.",
+    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+12" // Replace with your image URL!
+  }
+];
+
+const questions = [
+  {
+    question: "At first glance, you’re drawn to someone who…",
+    answers: [
+      { text: "Doesn’t say much, but watches everything", points: 1 },
+      { text: "Walks into a room like he owns it", points: 6 },
+      { text: "Smirks like he knows something you don’t", points: 4 },
+      { text: "Feels warm and easy to be around", points: 5 }
+    ]
+  },
+  {
+    question: "Your ideal first date is…",
+    answers: [
+      { text: "A late-night drive with music low and windows down", points: 2 },
+      { text: "Something spontaneous that wasn’t planned at all", points: 3 },
+      { text: "Dinner somewhere dimly lit and intimate", points: 9 },
+      { text: "Staying in, cooking together, and talking for hours", points: 11 }
+    ]
+  },
+  {
+    question: "When you're overwhelmed, you want him to…",
+    answers: [
+      { text: "Pull you somewhere quiet and shield you from everything", points: 0 },
+      { text: "Distract you until you're laughing again", points: 3 },
+      { text: "Take control and fix the situation immediately", points: 10 },
+      { text: "Sit beside you and just listen", points: 8 }
+    ]
+  },
+  {
+    question: "A red flag you’d probably ignore…",
+    answers: [
+      { text: "He gets possessive sometimes", points: 4 },
+      { text: "He disappears when things get too serious", points: 2 },
+      { text: " He loves attention a little too much", points: 6 },
+      { text: "He pretends he doesn’t care when he actually does", points: 9 }
+    ]
+  },
+  {
+    question: "His texting style that makes you melt…",
+    answers: [
+      { text: "“You home safe?”", points: 1 },
+      { text: "Random voice notes at 2AM", points: 0 },
+      { text: "Short, teasing replies that make you blush", points: 5 },
+      { text: "Long paragraphs when he’s in his feelings", points: 9 }
+    ]
+  },
+  {
+    question: "In public, you prefer someone who…",
+    answers: [
+      { text: "Keeps it subtle but always stays close", points: 8 },
+      { text: "Doesn’t care who’s watching", points: 4 },
+      { text: "Acts unbothered but gets territorial fast", points: 6 },
+      { text: "Holds your hand like it’s natural", points: 10 }
+    ]
+  },
+  {
+    question: "Your biggest weakness in relationships is…",
+    answers: [
+      { text: "Falling for emotionally unavailable people", points: 2 },
+      { text: "Mistaking chaos for passion", points: 4 },
+      { text: "Wanting to be chosen above everyone else", points: 7 },
+      { text: "Avoiding conflict until it explodes", points: 11 }
+    ]
+  },
+  {
+    question: "You fall hardest when he…",
+    answers: [
+      { text: "Shows a soft side no one else sees", points: 0 },
+      { text: "Defends you without hesitation", points: 1 },
+      { text: "Challenges you and keeps you on your toes", points: 9 },
+      { text: "Makes you feel safe without trying", points: 3 }
+    ]
+  },
+  {
+    question: "Your ideal relationship dynamic feels like…",
+    answers: [
+      { text: "Us against the world", points: 8 }, 
+      { text: "Best friends who flirt nonstop", points: 3 },
+      { text: "A little intense. A little toxic", points: 6 },
+      { text: "Calm, steady, and private", points: 10 }
+    ]
+  },
+  {
+    question: "The way he looks at you should feel…",
+    answers: [
+      { text: "Protective", points: 1 },
+      { text: "Playful", points: 11 },
+      { text: "Flustered", points: 7 },
+      { text: "Longing", points: 5 }
+    ]
+  },
+  {
+    question: "The way he touches you is…",
+    answers: [
+      { text: "Slow. Intentional. Like he’s memorizing you", points: 8 },
+      { text: "Hesitant at first, then overwhelming", points: 2 },
+      { text: "Gentle. Careful. A little shy", points: 7 },
+      { text: "Casual… until he realizes he hasn’t let go", points: 11 }
+    ]
+  },
+  {
+question: "At the end of the day, you want to feel…",
+    answers: [
+      { text: "Needed", points: 7 },
+      { text: "Chosen", points: 0 },
+      { text: "Desired", points: 5 },
+      { text: "Understood. 10", points: 10 }
+ ]
+  }
+];
+
+const tiebreakerQuestion = {
+  question: "If you had to choose one quality above all else, it would be…",
+  
+  // Write an answer for each character (0-11) that fits their personality!
+  answers: {
+    0: "Devotion",           // Shane
+    1: "Protection",       // Chase
+    2: "Love that's earned",                   // Tate
+    3: "A love that feels like friendship first",                              // Kendall
+    4: "Raw passion",             // Kian
+    5: "Sincerity",          // Riley
+    6: "Energy that never gets boring",             // Ethan
+    7: "Deep emotional connection",              // Bradie
+    8: "Emotional safety",                     // Adrian
+    9: "Growth and ambition",                  // Kyren
+    10: "Gentleness",                // Thomas
+    11: "Genuine intention"                    // Cameron
+  }
+};
+
+let currentQuestion = 0;
+let answers = [];
+let scores = [];
+let tiedCharacters = []; // Stores indices of tied characters
+
+function initScores() {
+  scores = new Array(characters.length).fill(0);
+}
+
+function startQuiz() {
+  currentQuestion = 0;
+  answers = new Array(questions.length).fill(null);
+  tiedCharacters = [];
+  initScores();
+  
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('resultsScreen').classList.add('hidden');
+  document.getElementById('tiebreakerScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  document.getElementById('totalQ').textContent = questions.length;
+  
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQuestion];
+  const letters = ['A', 'B', 'C', 'D'];
+  
+  document.getElementById('currentQ').textContent = currentQuestion + 1;
+  
+  const progress = ((currentQuestion) / questions.length) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+  document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+  
+  let html = `
+    <div class="question-number">Question ${currentQuestion + 1}</div>
+    <div class="question-text">${q.question}</div>
+    <div class="answers-list">
+  `;
+  
+  q.answers.forEach((answer, index) => {
+    const selected = answers[currentQuestion] === index ? 'selected' : '';
+    html += `
+      <div class="answer-option ${selected}" onclick="selectAnswer(${index})">
+        <span class="answer-letter">${letters[index]}</span>
+        <span class="answer-text">${answer.text}</span>
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  document.getElementById('questionCard').innerHTML = html;
+  
+  // Update navigation buttons
+  document.getElementById('prevBtn').disabled = currentQuestion === 0;
+  document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
+  document.getElementById('nextBtn').textContent = 
+    currentQuestion === questions.length - 1 ? 'See Results ♡' : 'Next →';
+}
+
+function selectAnswer(index) {
+  answers[currentQuestion] = index;
+  
+  // Update visual selection
+  document.querySelectorAll('.answer-option').forEach((el, i) => {
+    el.classList.toggle('selected', i === index);
+  });
+  
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  } else {
+    calculateResults();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+}
+
+function calculateResults() {
+  initScores();
+  
+  // Tally up points
+  answers.forEach((answerIndex, questionIndex) => {
+    if (answerIndex !== null) {
+      const characterIndex = questions[questionIndex].answers[answerIndex].points;
+      scores[characterIndex]++;
+    }
+  });
+  
+  // Find the highest score
+  const maxScore = Math.max(...scores);
+  
+  // Find ALL characters with that highest score
+  tiedCharacters = [];
+  scores.forEach((score, index) => {
+    if (score === maxScore) {
+      tiedCharacters.push(index);
+    }
+  });
+  
+  // If there's a tie, show tiebreaker! Otherwise show results
+  if (tiedCharacters.length > 1) {
+    showTiebreaker();
+  } else {
+    showResults(tiedCharacters[0]);
+  }
+}
+
+function showTiebreaker() {
+  document.getElementById('quizScreen').classList.add('hidden');
+  
+  // Build the tiebreaker question with only the tied characters as options
+  const tiedNames = tiedCharacters.map(i => characters[i].name).join(' & ');
+  
+  let html = `
+    <div class="quiz-header">
+      <h1 class="quiz-title">It's a Tie!</h1>
+      <p class="quiz-subtitle">Your heart is torn between ${tiedNames}...</p>
+    </div>
+    
+    <div class="question-card">
+      <div class="question-number">~ Tiebreaker ~</div>
+      <div class="question-text">${tiebreakerQuestion.question}</div>
+      <div class="answers-list">
+  `;
+  
+  // Show only the tied characters as options with their tiebreaker answers
+  tiedCharacters.forEach((charIndex, i) => {
+    const letter = String.fromCharCode(65 + i); // A, B, C, D...
+    const answerText = tiebreakerQuestion.answers[charIndex] || `Choose ${characters[charIndex].name}`;
+    html += `
+      <div class="answer-option" onclick="selectTiebreaker(${charIndex})">
+        <span class="answer-letter">${letter}</span>
+        <span class="answer-text">${answerText}</span>
+      </div>
+    `;
+  });
+  
+  html += `
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('tiebreakerScreen').innerHTML = html;
+  document.getElementById('tiebreakerScreen').classList.remove('hidden');
+}
+
+function selectTiebreaker(characterIndex) {
+  // Highlight selection briefly then show results
+  event.target.closest('.answer-option').classList.add('selected');
+  
+  setTimeout(() => {
+    showResults(characterIndex);
+  }, 400);
+}
+
+function showResults(characterIndex) {
+  const character = characters[characterIndex];
+  
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('tiebreakerScreen').classList.add('hidden');
+  
+  let html = `
+    <div class="results-card">
+      <div class="results-label">Your Lover Is...</div>
+      ${character.image ? `<img src="${character.image}" alt="${character.name}" class="results-image">` : ''}
+      <div class="results-character">${character.name}</div>
+      <div class="results-description">${character.description}</div>
+    </div>
+    <button class="restart-btn" onclick="startQuiz()">Take Quiz Again ♡</button>
+  `;
+  
+  document.getElementById('resultsScreen').innerHTML = html;
+  document.getElementById('resultsScreen').classList.remove('hidden');
+}
+</script>
