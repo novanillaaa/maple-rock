@@ -1,43 +1,34 @@
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap');
 /* ═══════════════════════════════════════════════════════════════
-♡ CUSTOMIZATION ZONE - Edit these variables to change the look!
+♡ CUSTOMIZATION ZONE - Starry Night Edition
 ═══════════════════════════════════════════════════════════════ */
 :root {
-/* COLORS - Pretty Blue Romantic Palette */
---quiz-bg: #0a0d14; /* Main background (deep night blue) */
---quiz-card-bg: #111827; /* Question card background */
---quiz-card-border: #1e3a5f; /* Card border color */
---quiz-accent: #60a5fa; /* Primary accent (soft sky blue) */
---quiz-accent-hover: #93c5fd; /* Accent hover state */
---quiz-accent-glow: rgba(96, 165, 250, 0.35); /* Glow effect color */
---quiz-accent-secondary: #a78bfa; /* Secondary accent (soft lavender) */
---quiz-text: #e2e8f0; /* Main text color */
---quiz-text-muted: #94a3b8; /* Secondary/muted text */
---quiz-answer-bg: #0f172a; /* Answer option background */
---quiz-answer-hover: #1e293b; /* Answer hover background */
---quiz-answer-selected: #1e3a5f; /* Selected answer background */
---quiz-answer-border: #334155; /* Answer border */
---quiz-progress-bg: #1e293b; /* Progress bar background */
---quiz-result-gradient-1: #3b82f6; /* Result gradient start */
---quiz-result-gradient-2: #1e40af; /* Result gradient middle */
---quiz-result-gradient-3: #7c3aed; /* Result gradient end (purple hint) */
+/* COLORS - Starry Night Palette */
+--quiz-bg: #050810;
+--quiz-card-bg: #0c1120;
+--quiz-card-border: #1a2a4a;
+--quiz-accent: #f5c842;
+--quiz-accent-hover: #fad96a;
+--quiz-accent-glow: rgba(245, 200, 66, 0.3);
+--quiz-accent-secondary: #c9a227;
+--quiz-text: #e8eaf6;
+--quiz-text-muted: #7e90b8;
+--quiz-answer-bg: #080e1c;
+--quiz-answer-hover: #0f1a30;
+--quiz-answer-selected: #1a2d50;
+--quiz-answer-border: #1e2e4a;
+--quiz-progress-bg: #0f1a30;
+--quiz-result-gradient-1: #0d1b3e;
+--quiz-result-gradient-2: #112244;
+--quiz-result-gradient-3: #1a1040;
 
-/* FONTS - Use Google Fonts or web-safe fonts */
---quiz-font-display: 'Cormorant Garamond', Georgia, serif; /* Headings - romantic serif */
---quiz-font-body: 'Nunito', 'Segoe UI', sans-serif; /* Body text - soft & readable */
-
-/* SIZING */
---quiz-max-width: 620px; /* Maximum quiz width */
---quiz-border-radius: 12px; /* Rounded corners */
---quiz-padding: 2rem; /* Internal padding */
+--quiz-font-display: 'Cormorant Garamond', Georgia, serif;
+--quiz-font-body: 'Nunito', 'Segoe UI', sans-serif;
+--quiz-max-width: 620px;
+--quiz-border-radius: 12px;
+--quiz-padding: 2rem;
 }
-
-/* ═══════════════════════════════════════════════════════════════
-CORE STYLES - Edit with caution below this line!
-═══════════════════════════════════════════════════════════════ */
-
-/* Google Fonts Import - Change these if using different fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap');
 
 * {
 margin: 0;
@@ -45,12 +36,15 @@ padding: 0;
 box-sizing: border-box;
 }
 
+/* ── Starfield background ── */
 .quiz-container {
 font-family: var(--quiz-font-body);
-background: var(--quiz-bg);
+background-color: var(--quiz-bg);
 background-image:
-radial-gradient(ellipse at 20% 20%, rgba(96, 165, 250, 0.08) 0%, transparent 50%),
-radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+radial-gradient(ellipse at 15% 25%, rgba(30, 60, 120, 0.35) 0%, transparent 55%),
+radial-gradient(ellipse at 85% 75%, rgba(20, 40, 100, 0.3) 0%, transparent 55%),
+radial-gradient(ellipse at 50% 10%, rgba(245, 200, 66, 0.04) 0%, transparent 40%),
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='12' cy='34' r='0.8' fill='white' opacity='0.7'/%3E%3Ccircle cx='89' cy='12' r='0.5' fill='white' opacity='0.5'/%3E%3Ccircle cx='167' cy='78' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='234' cy='22' r='0.7' fill='white' opacity='0.8'/%3E%3Ccircle cx='312' cy='55' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='378' cy='9' r='0.9' fill='white' opacity='0.7'/%3E%3Ccircle cx='45' cy='130' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='122' cy='145' r='1.1' fill='white' opacity='0.9'/%3E%3Ccircle cx='198' cy='118' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='267' cy='160' r='0.8' fill='white' opacity='0.6'/%3E%3Ccircle cx='345' cy='133' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='390' cy='170' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='30' cy='220' r='0.7' fill='white' opacity='0.6'/%3E%3Ccircle cx='100' cy='245' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='178' cy='200' r='1.2' fill='white' opacity='0.8'/%3E%3Ccircle cx='250' cy='230' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='320' cy='210' r='0.8' fill='white' opacity='0.7'/%3E%3Ccircle cx='370' cy='255' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='60' cy='310' r='1' fill='white' opacity='0.6'/%3E%3Ccircle cx='140' cy='330' r='0.7' fill='white' opacity='0.5'/%3E%3Ccircle cx='210' cy='300' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='280' cy='340' r='1.1' fill='white' opacity='0.8'/%3E%3Ccircle cx='355' cy='315' r='0.6' fill='white' opacity='0.6'/%3E%3Ccircle cx='20' cy='380' r='0.8' fill='white' opacity='0.5'/%3E%3Ccircle cx='95' cy='390' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='165' cy='370' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='240' cy='385' r='0.7' fill='white' opacity='0.6'/%3E%3Ccircle cx='310' cy='375' r='0.5' fill='white' opacity='0.4'/%3E%3Ccircle cx='385' cy='395' r='0.9' fill='white' opacity='0.7'/%3E%3Ccircle cx='72' cy='67' r='1.3' fill='%23f5c842' opacity='0.6'/%3E%3Ccircle cx='295' cy='88' r='1' fill='%23f5c842' opacity='0.5'/%3E%3Ccircle cx='155' cy='270' r='1.2' fill='%23f5c842' opacity='0.4'/%3E%3Ccircle cx='335' cy='180' r='0.9' fill='%23f5c842' opacity='0.5'/%3E%3C/svg%3E");
 color: var(--quiz-text);
 min-height: 100vh;
 padding: 2rem 1rem;
@@ -64,7 +58,7 @@ width: 100%;
 max-width: var(--quiz-max-width);
 }
 
-/* Header */
+/* ── Header ── */
 .quiz-header {
 text-align: center;
 margin-bottom: 2rem;
@@ -76,7 +70,7 @@ font-size: clamp(1.8rem, 5vw, 2.6rem);
 font-weight: 600;
 letter-spacing: 0.02em;
 margin-bottom: 0.5rem;
-background: linear-gradient(135deg, var(--quiz-text) 0%, var(--quiz-accent) 50%, var(--quiz-accent-secondary) 100%);
+background: linear-gradient(135deg, #e8eaf6 0%, #f5c842 55%, #c9a227 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
@@ -88,15 +82,15 @@ color: var(--quiz-text-muted);
 font-style: italic;
 }
 
-/* Decorative heart */
 .heart-divider {
 color: var(--quiz-accent);
 font-size: 1.2rem;
 margin: 1rem 0;
-opacity: 0.6;
+opacity: 0.7;
+text-shadow: 0 0 12px var(--quiz-accent-glow);
 }
 
-/* Progress Bar */
+/* ── Progress Bar ── */
 .progress-container {
 margin-bottom: 1.5rem;
 }
@@ -112,7 +106,7 @@ letter-spacing: 0.1em;
 }
 
 .progress-bar {
-height: 5px;
+height: 4px;
 background: var(--quiz-progress-bg);
 border-radius: 3px;
 overflow: hidden;
@@ -120,13 +114,13 @@ overflow: hidden;
 
 .progress-fill {
 height: 100%;
-background: linear-gradient(90deg, var(--quiz-accent), var(--quiz-accent-secondary));
+background: linear-gradient(90deg, #c9a227, #f5c842, #fad96a);
 border-radius: 3px;
 transition: width 0.4s ease;
-box-shadow: 0 0 12px var(--quiz-accent-glow);
+box-shadow: 0 0 10px var(--quiz-accent-glow);
 }
 
-/* Question Card */
+/* ── Question Card ── */
 .question-card {
 background: var(--quiz-card-bg);
 border: 1px solid var(--quiz-card-border);
@@ -134,7 +128,10 @@ border-radius: var(--quiz-border-radius);
 padding: var(--quiz-padding);
 margin-bottom: 1.5rem;
 animation: fadeIn 0.4s ease;
-box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+box-shadow:
+0 4px 30px rgba(0, 0, 0, 0.5),
+0 0 0 1px rgba(245, 200, 66, 0.04),
+inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 @keyframes fadeIn {
@@ -146,8 +143,9 @@ to { opacity: 1; transform: translateY(0); }
 font-size: 0.75rem;
 color: var(--quiz-accent);
 text-transform: uppercase;
-letter-spacing: 0.15em;
+letter-spacing: 0.18em;
 margin-bottom: 0.75rem;
+opacity: 0.85;
 }
 
 .question-text {
@@ -156,9 +154,10 @@ font-size: 1.35rem;
 font-weight: 600;
 line-height: 1.5;
 margin-bottom: 1.5rem;
+color: #dde3f5;
 }
 
-/* Answer Options */
+/* ── Answer Options ── */
 .answers-list {
 display: flex;
 flex-direction: column;
@@ -179,14 +178,15 @@ gap: 1rem;
 
 .answer-option:hover {
 background: var(--quiz-answer-hover);
-border-color: var(--quiz-accent);
+border-color: rgba(245, 200, 66, 0.5);
 transform: translateX(4px);
+box-shadow: 0 2px 16px rgba(245, 200, 66, 0.08);
 }
 
 .answer-option.selected {
 background: var(--quiz-answer-selected);
 border-color: var(--quiz-accent);
-box-shadow: 0 0 20px var(--quiz-accent-glow);
+box-shadow: 0 0 20px rgba(245, 200, 66, 0.2), inset 0 0 20px rgba(245, 200, 66, 0.04);
 }
 
 .answer-letter {
@@ -208,15 +208,17 @@ transition: all 0.25s ease;
 .answer-option.selected .answer-letter {
 border-color: var(--quiz-accent);
 color: var(--quiz-accent);
-background: rgba(96, 165, 250, 0.1);
+background: rgba(245, 200, 66, 0.1);
+box-shadow: 0 0 8px rgba(245, 200, 66, 0.25);
 }
 
 .answer-text {
 font-size: 1rem;
 line-height: 1.4;
+color: var(--quiz-text);
 }
 
-/* Navigation */
+/* ── Navigation ── */
 .quiz-nav {
 display: flex;
 justify-content: space-between;
@@ -241,52 +243,52 @@ color: var(--quiz-text-muted);
 }
 
 .nav-btn.prev:hover:not(:disabled) {
-border-color: var(--quiz-text);
+border-color: var(--quiz-text-muted);
 color: var(--quiz-text);
 }
 
 .nav-btn.next {
-background: linear-gradient(135deg, var(--quiz-accent), var(--quiz-accent-secondary));
+background: linear-gradient(135deg, #c9a227, #f5c842);
 border: none;
-color: #0a0d14;
-font-weight: 600;
+color: #05080f;
+font-weight: 700;
 margin-left: auto;
 }
 
 .nav-btn.next:hover:not(:disabled) {
-box-shadow: 0 0 25px var(--quiz-accent-glow);
+box-shadow: 0 0 28px rgba(245, 200, 66, 0.45);
 transform: translateY(-2px);
 }
 
 .nav-btn:disabled {
-opacity: 0.4;
+opacity: 0.35;
 cursor: not-allowed;
 }
 
-/* Results Screen */
+/* ── Results Card ── */
 .results-screen {
 text-align: center;
 animation: fadeIn 0.5s ease;
 }
 
 .results-card {
-background: linear-gradient(145deg, var(--quiz-result-gradient-1), var(--quiz-result-gradient-2), var(--quiz-result-gradient-3));
+background: linear-gradient(160deg, #0d1b3e 0%, #0a1228 50%, #120d2e 100%);
+border: 1px solid rgba(245, 200, 66, 0.2);
 border-radius: var(--quiz-border-radius);
 padding: 2.5rem var(--quiz-padding);
 margin-bottom: 2rem;
 position: relative;
 overflow: hidden;
-box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+box-shadow:
+0 8px 40px rgba(0, 0, 0, 0.6),
+0 0 60px rgba(245, 200, 66, 0.06);
 }
 
 .results-card::before {
 content: '';
 position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
+top: 0; left: 0; right: 0; bottom: 0;
+background: radial-gradient(circle at 25% 15%, rgba(245, 200, 66, 0.07) 0%, transparent 50%);
 pointer-events: none;
 }
 
@@ -294,13 +296,14 @@ pointer-events: none;
 font-size: 0.85rem;
 text-transform: uppercase;
 letter-spacing: 0.2em;
-opacity: 0.9;
+color: var(--quiz-accent);
 margin-bottom: 0.5rem;
+opacity: 0.9;
 }
 
 .results-subtitle {
 font-size: 1rem;
-opacity: 0.85;
+color: var(--quiz-text-muted);
 margin-bottom: 1rem;
 font-style: italic;
 }
@@ -310,13 +313,17 @@ font-family: var(--quiz-font-display);
 font-size: clamp(2rem, 6vw, 3rem);
 font-weight: 700;
 margin-bottom: 1.5rem;
-text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+background: linear-gradient(135deg, #fff 0%, #f5c842 60%, #c9a227 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: none;
 }
 
 .results-description {
 font-size: 1.05rem;
-line-height: 1.7;
-opacity: 0.95;
+line-height: 1.75;
+color: #c8d0e8;
 max-width: 90%;
 margin: 0 auto;
 }
@@ -326,16 +333,19 @@ width: 160px;
 height: 160px;
 border-radius: 50%;
 object-fit: cover;
-border: 4px solid rgba(255,255,255,0.25);
+border: 3px solid rgba(245, 200, 66, 0.4);
 margin-bottom: 1.5rem;
-box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+box-shadow:
+0 10px 30px rgba(0, 0, 0, 0.5),
+0 0 30px rgba(245, 200, 66, 0.15);
 }
 
+/* ── Restart Button ── */
 .restart-btn {
 font-family: var(--quiz-font-body);
-background: var(--quiz-card-bg);
-border: 1px solid var(--quiz-card-border);
-color: var(--quiz-text);
+background: transparent;
+border: 1px solid rgba(245, 200, 66, 0.3);
+color: var(--quiz-accent);
 padding: 1rem 2.5rem;
 border-radius: var(--quiz-border-radius);
 font-size: 0.9rem;
@@ -347,10 +357,11 @@ letter-spacing: 0.1em;
 
 .restart-btn:hover {
 border-color: var(--quiz-accent);
-box-shadow: 0 0 20px var(--quiz-accent-glow);
+box-shadow: 0 0 24px rgba(245, 200, 66, 0.25);
+background: rgba(245, 200, 66, 0.05);
 }
 
-/* Start Screen */
+/* ── Start Screen ── */
 .start-screen {
 text-align: center;
 animation: fadeIn 0.5s ease;
@@ -359,22 +370,20 @@ animation: fadeIn 0.5s ease;
 .start-description {
 color: var(--quiz-text-muted);
 font-size: 1rem;
-line-height: 1.6;
-margin-bottom: 2rem;
+line-height: 1.7;
+margin: 0 auto 2rem;
 max-width: 90%;
-margin-left: auto;
-margin-right: auto;
 }
 
 .start-btn {
 font-family: var(--quiz-font-body);
-background: linear-gradient(135deg, var(--quiz-accent), var(--quiz-accent-secondary));
+background: linear-gradient(135deg, #c9a227, #f5c842);
 border: none;
-color: #0a0d14;
+color: #05080f;
 padding: 1.1rem 3rem;
 border-radius: var(--quiz-border-radius);
 font-size: 1rem;
-font-weight: 600;
+font-weight: 700;
 cursor: pointer;
 transition: all 0.25s ease;
 text-transform: uppercase;
@@ -382,32 +391,22 @@ letter-spacing: 0.15em;
 }
 
 .start-btn:hover {
-box-shadow: 0 0 30px var(--quiz-accent-glow);
+box-shadow: 0 0 35px rgba(245, 200, 66, 0.45);
 transform: translateY(-3px);
 }
 
-/* Hidden state */
+/* ── Utility ── */
 .hidden {
 display: none !important;
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 480px) {
-.quiz-container {
-padding: 1rem 0.75rem;
-}
-
-.question-card {
-padding: 1.5rem;
-}
-
-.nav-btn {
-padding: 0.8rem 1.5rem;
-font-size: 0.85rem;
-}
+.quiz-container { padding: 1rem 0.75rem; }
+.question-card { padding: 1.5rem; }
+.nav-btn { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
 }
 </style>
-
 <div class="quiz-container">
 <div class="quiz-wrapper">
 
@@ -460,203 +459,203 @@ We'll reveal which character was destined to be yours.
 <div id="tiebreakerScreen" class="results-screen hidden">
 <!-- Tiebreaker loads here -->
 </div>
-
 </div>
 </div>
 
 <script>
-  const characters = [
-  {
-    name: "Shane Brooks",
-    description: "Your love is quiet but all-consuming. They'll memorize every detail about you and love you in ways you didn't know you needed. With them, silence is never awkward—it's intimate.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+1" // Replace with your image URL!
-  },
-  {
-    name: "Chase Thompson", 
-    description: "They'll sweep you off your feet with grand gestures and passionate declarations. Life with them is never boring—every day is an adventure, and you're the only one they want by their side.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+2" // Replace with your image URL!
-  },
-  {
-    name: "Tate Tyler",
-    description: "Dangerous and devoted in equal measure. They'd burn the world down for you and rebuild it however you wanted. Their love is intense, possessive, and utterly consuming.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+3" // Replace with your image URL!
-  },
-  {
-    name: "Kendall McAllister",
-    description: "Soft mornings and gentle touches—they love you in the small moments. A steady presence, a warm embrace, a love that feels like coming home after a long journey.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+4" // Replace with your image URL!
-  },
-  {
-    name: "Kian McAllister",
-    description: "Sharp wit meets tender heart. They'll challenge you, tease you, and drive you crazy—but beneath the banter is someone who would do anything to see you smile.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+5" // Replace with your image URL!
-  },
-  {
-    name: "Riley Harlow",
-    description: "They're the calm in your chaos, the voice of reason when everything falls apart. Patient and understanding, they love you through every version of yourself.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+6" // Replace with your image URL!
-  },
-  {
-    name: "Ethan Carter",
-    description: "Mysterious and magnetic, they keep you guessing. Just when you think you've figured them out, they surprise you. The chase never ends—and neither does the passion.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+7" // Replace with your image URL!
-  },
-  {
-    name: "Bradie Scott",
-    description: "Protective to a fault, they'd fight anyone who hurt you. Their love is fierce and loyal—once you have their heart, nothing could ever take it from you.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+8" // Replace with your image URL!
-  },
-  {
-    name: "Adrian Crowe",
-    description: "Creative soul meets hopeless romantic. They'll write you poetry, paint you portraits, and love you like you're a masterpiece. With them, love is art.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+9" // Replace with your image URL!
-  },
-  {
-    name: "Kyren Marks",
-    description: "They're trouble wrapped in a pretty package, and you wouldn't have it any other way. Life with them is messy, chaotic, and absolutely exhilarating.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+10" // Replace with your image URL!
-  },
-  {
-    name: "Thomas Berry",
-    description: "Old soul, timeless love. They believe in fate, in destiny, in the two of you finding each other across any lifetime. Their devotion transcends everything.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+11" // Replace with your image URL!
-  },
-  {
-    name: "Cameron Coleman",
-    description: "They'll make you laugh until you cry and hold you when you actually do. Best friend turned lover—they know you better than you know yourself, and love every part.",
-    image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+12" // Replace with your image URL!
-  }
+const characters = [
+{
+name: "Shane Brooks",
+description: "You didn't just get a boyfriend; you got the whole damn town's best-kept secret. Everyone sees Shane Brooks as the laid-back plug and former football star, the guy who rolls his eyes at drama but always seems to be at the center of it. They see the sarcastic comments, the perpetual cloud of smoke, and the effortless cool that's as natural as the mountains surrounding your town. But you? You get what's underneath all that. He'll tease you relentlessly about your taste in music, only to have your favorite album quietly playing the next time you get in his truck. His affection isn't in grand speeches; it's in the way he instinctively puts his body between you and a crowd, the way he tosses you the worn-out flannel he keeps in his back seat when you're cold, and the intense, admiring way he listens to you rant about your day, his head tilted just so. He's a product of Maple Rock, for better or worse. You'll spend late nights talking dreams bigger than this town, feeling the weight of the farm that feels like both a safety net and an anchor. His greatest fear isn't monsters or failure—it's being seen as just an extension of his dad, a destiny he's desperately trying to out-run. With you, he starts to think maybe he doesn't have to run, maybe he can just… build something new.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+1"
+},
+{
+name: "Chase Thompson",
+description: "You've managed to do what no one else in Maple Rock has been able to: you've become the center of Chase Thompson's limited, hand-picked solar system. To the outside world, he's a 6\'4\" block of dry wit and calculated disinterest, a guy who looks like he'd rather be calculating escape velocity than making small talk. They see the quiet guy in the NASA t-shirt, the one who flips off chaotic frat boys with the same energy he uses to adjust his headphones. They don't see the side he reserves just for you. He won't hold your hand and whisper sweet nothings. Instead, he'll point to the sky with a long finger, his voice a low, serious monotone as he explains the mythology behind the stars. Sharing his obsession with you is the most intimate thing he can offer. To him, letting you into his love for the cosmos is the equivalent of giving you a key to his soul. Accept it, and you'll find the universe is a lot warmer than it looks.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+2"
+},
+{
+name: "Tate Tyler",
+description: "You got Tate Tyler! He may be the pretty boy with the pigtails and the expressive green eyes who works at the local coffee shop, but he comes with a storm cloud permanently fixed over his head. Dating him is a masterclass in patience, as he's all sharp edges, anxious sighs, and a quiet intensity that can be both intimidating and captivating. He'll snap at you for breathing too loud but will remember your favorite obscure snack from a single comment you made weeks ago. If you can handle his fragile, high-strung nerves and see past the grumpy exterior he uses as armor, you'll unlock a fiercely loyal and surprisingly tender partner whose affection is quiet, deliberate, and reserved only for you—though you'll probably have to pry a \"thank you\" out of him.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+3"
+},
+{
+name: "Kendall McAllister",
+description: "Congrats, you won't be getting a full eight hours of sleep ever again. You got Kendall McAllister. Your life is now an unprompted adventure. Spontaneous road trips for the sole purpose of getting good burgers, getting kicked out of Walmart for racing in the shopping carts, and learning how to patch up bloody knuckles are all part of the package deal. He'll steal your fries, make a dirty joke about literally everything. But, and this is the important part, he's also the guy who'll show up at your door at 3 AM with your favorite comfort food because he had a feeling you were having a bad night. He'll fight anyone who looks at you wrong and then get all flustered when you try to thank him. He's fiercely loyal, stupidly brave, and underneath all the pervy jokes and chaos, he's got a softer spot for you than he'll ever admit.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+4"
+},
+{
+name: "Kian McAllister",
+description: "You got Kian McAllister, Maple Rock's original bad boy with the steady hands of a saint. He's the guy who shows up with grease under his nails and a devilish smirk, but looks at you with a fierce, protective gaze that could silence a room. Your relationship is built on late-night drives, stolen kisses in the garage, and the comforting weight of his worn-out flannel draped over your shoulders. Kian is a man of action, not words; he won't write you poetry, but he'll rebuild your engine in the pouring rain and stand between you and the world without a second thought. He's a storm of quiet intensity and bleeding-heart loyalty, and while earning his trust is a challenge, loving him feels like coming home to the safest, most thrilling place on earth.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+5"
+},
+{
+name: "Riley Harlow",
+description: "In a town where everyone has a history, you're the future he's been waiting for. While others may offer loud proclamations, Riley offers a quiet, intense focus that makes you feel like the only person in the room. You've captured the attention of the one and only Riley Harlow, and to him, you're an Angel who fell right into his lap. He's warm, attentive, and calls you \"Angel\" with a sincerity that makes you feel like the only person in the world, but beneath that polished exterior is a desperate, all-consuming desire to make you his. He masterfully blurs the lines, his innocent compliments and gentle touches masking a raw intensity that makes the forbidden feel inevitable. With Riley, you're not just choosing a boyfriend; you're stepping into the beautiful, chaotic gravity of a man who loves with a devotion so profound it's willing to burn everything else to the ground just to ensure you never leave.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+6"
+},
+{
+name: "Ethan Carter",
+description: "You pulled Maple Rock's most notorious pain in the ass. Hope you like your ego shredded and your patience tested on a daily basis, because that's the starter pack for this relationship. For all the insults and eye-rolls, he's the one who remembers exactly how you take your coffee after a single offhand comment months ago. If someone else so much as looks at you wrong, he's suddenly a six-foot pit bull in a red jacket, snarling, \"The fuck they want?\" He'll give you the last slice of pizza, his brand new hoodie when you're cold, and he will absolutely eviscerate anyone who hurts you—only he's allowed to do that. It's loud, it's frustrating, and half the time you want to push him into traffic. His affection is a battlefield, and he'll kiss you like he's trying to win a fight, then hold you tight enough to bruise because he's secretly terrified you'll realize you can do better. But he's your beautiful disaster, and you wouldn't have it any other way.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+7"
+},
+{
+name: "Bradie Scott",
+description: "Your Maple Rock boyfriend is Bradie Scott, the town's unequivocal sweetheart and the one who will always leave a cupcake on your doorstep just because. He's a bundle of gentle nerves and sunbeam smiles, unfailingly kind and fiercely loyal to those he cares about. With Bradie, your relationship will be built on quiet moments, shared secrets, and a kitchen that perpetually smells like vanilla. He might be easily flustered by your compliments, turning an adorable shade of red, but beneath his soft-spoken exterior is a deeply passionate heart eager to please. To be with him is to be trusted with his most vulnerable self, unlocking a side of him that's as beautiful and precious as the pastries he bakes—he's a safe harbor in the chaotic storm of Maple Rock, offering a love that's as genuine and sweet as he is.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+8"
+},
+{
+name: "Adrian Crowe",
+description: "You got Adrian Crowe, the quiet enigma of Maple Rock. Forget grand public gestures; his affection is a language of shadows and silent understandings. He's the one who will notice you're cold before you do, sliding his jacket over your shoulders with a sarcastic sigh. He won't shout his feelings from the rooftops, but he'll memorize your favorite poetry and defend you with a sharp tongue that usually only reserved for himself. Dating Adrian means finding a sanctuary in his quiet company, a world made of dog-eared books, the scent of rain and coffee, and debates over horror movie finales. It may take time to see past the carefully crafted armor of black clothing and dry wit, but once you do, you'll discover a fiercely protective, unwaveringly loyal heart that offers a love as deep and intense as the gothic novels he cherishes.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+9"
+},
+{
+name: "Kyren Marks",
+description: "Well, look at you. You didn't just get a boyfriend; you got a debate partner for life. Dating Kyren is loud. It's a constant, intellectual sparring match where the prize is getting the last word, but actually… the prize is just the other person's attention. He's demanding, and he'll call you out on your logic, but he's the first to champion your successes. Your relationship is built on late-night study sessions that turn into make-out marathons on his living room floor, on him defending your honor with a ferocious, well-researched essay when someone slighted you online, and on the quiet moments where he just rests his head on your shoulder, too tired to argue. He remembers the precise way you like your coffee, the name of your childhood pet, and will hold a grudge on your behalf far longer than you will. In private, the sharp edges soften, and you're met with a cuddly, surprisingly needy guy who just wants to be held and mumble about his day.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+10"
+},
+{
+name: "Thomas Berry",
+description: "You've landed the boy who's more likely to write you a heartfelt letter than send a generic \"good morning\" text. With Thomas, love isn't a grand, cinematic gesture; it's the quiet, unwavering consistency of showing up. He's the steady hand you reach for in the chaos of Maple Rock, the one who remembers the little things you say and the way you take your coffee. He's earnest, sometimes a little awkward in his sincerity, but his heart is always in the right place. He'll fight for you not with loud words, but with gentle actions and a protective spirit that makes you feel safe enough to be your truest self. A relationship with him feels like a warm, familiar blanket—a quiet understanding shared in comfortable silence and the profound comfort of knowing you are, and always will be, his priority. You got Thomas because you value a love that feels like coming home.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+11"
+},
+{
+name: "Cameron Coleman",
+description: "You pulled the pretty boy jock with a secret nerd's heart! Getting with Cameron feels like winning the lottery, at first. With his easy confidence, that killer smile that could light up a room on a sunny day, and the way he fills out a red letterman jacket, it's easy to see why you fell for his charm. He's the guy who'll scoop you up in a public hug, buy you cheesy snacks at the movies, and make you feel like the only person in the room… until he doesn't. Dating Cameron is like dating a golden retriever who just learned how to talk: mostly adorable, occasionally disastrous, and completely incapable of understanding the word \"no.\" He's a well-meaning disaster who will say the wrong thing at the exact wrong moment and then look at you with wide, hurt hazel eyes, because in his mind, he was being charming. Dating Cameron is an exercise in patience, a crash course in managing the male ego, and honestly, kind of exhausting. But for every moment you want to shake him until his brain rattles, there's a moment where he'll look at you with such genuine, goofy adoration that you'll almost—almost—forget how empty-headed he is. Good luck. You'll need it.",
+image: "https://placehold.co/300x300/1e3a5f/60a5fa?text=Char+12"
+}
 ];
 
+  <script>
 const questions = [
-  {
-    question: "At first glance, you’re drawn to someone who…",
-    answers: [
-      { text: "Doesn’t say much, but watches everything", points: 1 },
-      { text: "Walks into a room like he owns it", points: 6 },
-      { text: "Smirks like he knows something you don’t", points: 4 },
-      { text: "Feels warm and easy to be around", points: 5 }
-    ]
-  },
-  {
-    question: "Your ideal first date is…",
-    answers: [
-      { text: "A late-night drive with music low and windows down", points: 2 },
-      { text: "Something spontaneous that wasn’t planned at all", points: 3 },
-      { text: "Dinner somewhere dimly lit and intimate", points: 9 },
-      { text: "Staying in, cooking together, and talking for hours", points: 11 }
-    ]
-  },
-  {
-    question: "When you're overwhelmed, you want him to…",
-    answers: [
-      { text: "Pull you somewhere quiet and shield you from everything", points: 0 },
-      { text: "Distract you until you're laughing again", points: 3 },
-      { text: "Take control and fix the situation immediately", points: 10 },
-      { text: "Sit beside you and just listen", points: 8 }
-    ]
-  },
-  {
-    question: "A red flag you’d probably ignore…",
-    answers: [
-      { text: "He gets possessive sometimes", points: 4 },
-      { text: "He disappears when things get too serious", points: 2 },
-      { text: " He loves attention a little too much", points: 6 },
-      { text: "He pretends he doesn’t care when he actually does", points: 9 }
-    ]
-  },
-  {
-    question: "His texting style that makes you melt…",
-    answers: [
-      { text: "“You home safe?”", points: 1 },
-      { text: "Random voice notes at 2AM", points: 0 },
-      { text: "Short, teasing replies that make you blush", points: 5 },
-      { text: "Long paragraphs when he’s in his feelings", points: 9 }
-    ]
-  },
-  {
-    question: "In public, you prefer someone who…",
-    answers: [
-      { text: "Keeps it subtle but always stays close", points: 8 },
-      { text: "Doesn’t care who’s watching", points: 4 },
-      { text: "Acts unbothered but gets territorial fast", points: 6 },
-      { text: "Holds your hand like it’s natural", points: 10 }
-    ]
-  },
-  {
-    question: "Your biggest weakness in relationships is…",
-    answers: [
-      { text: "Falling for emotionally unavailable people", points: 2 },
-      { text: "Mistaking chaos for passion", points: 4 },
-      { text: "Wanting to be chosen above everyone else", points: 7 },
-      { text: "Avoiding conflict until it explodes", points: 11 }
-    ]
-  },
-  {
-    question: "You fall hardest when he…",
-    answers: [
-      { text: "Shows a soft side no one else sees", points: 0 },
-      { text: "Defends you without hesitation", points: 1 },
-      { text: "Challenges you and keeps you on your toes", points: 9 },
-      { text: "Makes you feel safe without trying", points: 3 }
-    ]
-  },
-  {
-    question: "Your ideal relationship dynamic feels like…",
-    answers: [
-      { text: "Us against the world", points: 8 }, 
-      { text: "Best friends who flirt nonstop", points: 3 },
-      { text: "A little intense. A little toxic", points: 6 },
-      { text: "Calm, steady, and private", points: 10 }
-    ]
-  },
-  {
-    question: "The way he looks at you should feel…",
-    answers: [
-      { text: "Protective", points: 1 },
-      { text: "Playful", points: 11 },
-      { text: "Flustered", points: 7 },
-      { text: "Longing", points: 5 }
-    ]
-  },
-  {
-    question: "The way he touches you is…",
-    answers: [
-      { text: "Slow. Intentional. Like he’s memorizing you", points: 8 },
-      { text: "Hesitant at first, then overwhelming", points: 2 },
-      { text: "Gentle. Careful. A little shy", points: 7 },
-      { text: "Casual… until he realizes he hasn’t let go", points: 11 }
-    ]
-  },
-  {
+{
+question: "At first glance, you’re drawn to someone who…",
+answers: [
+{ text: "Doesn’t say much, but watches everything", points: 1 },
+{ text: "Walks into a room like he owns it", points: 6 },
+{ text: "Smirks like he knows something you don’t", points: 4 },
+{ text: "Feels warm and easy to be around", points: 5 }
+]
+},
+{
+question: "Your ideal first date is…",
+answers: [
+{ text: "A late-night drive with music low and windows down", points: 2 },
+{ text: "Something spontaneous that wasn’t planned at all", points: 3 },
+{ text: "Dinner somewhere dimly lit and intimate", points: 9 },
+{ text: "Staying in, cooking together, and talking for hours", points: 11 }
+]
+},
+{
+question: "When you're overwhelmed, you want him to…",
+answers: [
+{ text: "Pull you somewhere quiet and shield you from everything", points: 0 },
+{ text: "Distract you until you're laughing again", points: 3 },
+{ text: "Take control and fix the situation immediately", points: 10 },
+{ text: "Sit beside you and just listen", points: 8 }
+]
+},
+{
+question: "A red flag you’d probably ignore…",
+answers: [
+{ text: "He gets possessive sometimes", points: 4 },
+{ text: "He disappears when things get too serious", points: 2 },
+{ text: " He loves attention a little too much", points: 6 },
+{ text: "He pretends he doesn’t care when he actually does", points: 9 }
+]
+},
+{
+question: "His texting style that makes you melt…",
+answers: [
+{ text: "You home safe?", points: 1 },
+{ text: "Random voice notes at 2AM", points: 0 },
+{ text: "Short, teasing replies that make you blush", points: 5 },
+{ text: "Long paragraphs when he’s in his feelings", points: 9 }
+]
+},
+{
+question: "In public, you prefer someone who…",
+answers: [
+{ text: "Keeps it subtle but always stays close", points: 8 },
+{ text: "Doesn’t care who’s watching", points: 4 },
+{ text: "Acts unbothered but gets territorial fast", points: 6 },
+{ text: "Holds your hand like it’s natural", points: 10 }
+]
+},
+{
+question: "Your biggest weakness in relationships is…",
+answers: [
+{ text: "Falling for emotionally unavailable people", points: 2 },
+{ text: "Mistaking chaos for passion", points: 4 },
+{ text: "Wanting to be chosen above everyone else", points: 7 },
+{ text: "Avoiding conflict until it explodes", points: 11 }
+]
+},
+{
+question: "You fall hardest when he…",
+answers: [
+{ text: "Shows a soft side no one else sees", points: 0 },
+{ text: "Defends you without hesitation", points: 1 },
+{ text: "Challenges you and keeps you on your toes", points: 9 },
+{ text: "Makes you feel safe without trying", points: 3 }
+]
+},
+{
+question: "Your ideal relationship dynamic feels like…",
+answers: [
+{ text: "Us against the world", points: 8 },
+{ text: "Best friends who flirt nonstop", points: 3 },
+{ text: "A little intense. A little toxic", points: 6 },
+{ text: "Calm, steady, and private", points: 10 }
+]
+},
+{
+question: "The way he looks at you should feel…",
+answers: [
+{ text: "Protective", points: 1 },
+{ text: "Playful", points: 11 },
+{ text: "Flustered", points: 7 },
+{ text: "Longing", points: 5 }
+]
+},
+{
+question: "The way he touches you is…",
+answers: [
+{ text: "Slow. Intentional. Like he’s memorizing you", points: 8 },
+{ text: "Hesitant at first, then overwhelming", points: 2 },
+{ text: "Gentle. Careful. A little shy", points: 7 },
+{ text: "Casual… until he realizes he hasn’t let go", points: 11 }
+]
+},
+{
 question: "At the end of the day, you want to feel…",
-    answers: [
-      { text: "Needed", points: 7 },
-      { text: "Chosen", points: 0 },
-      { text: "Desired", points: 5 },
-      { text: "Understood. 10", points: 10 }
- ]
-  }
+answers: [
+{ text: "Needed", points: 7 },
+{ text: "Chosen", points: 0 },
+{ text: "Desired", points: 5 },
+{ text: "Understood", points: 10 }
+]
+}
 ];
 
 const tiebreakerQuestion = {
-  question: "If you had to choose one quality above all else, it would be…",
-  
-  // Write an answer for each character (0-11) that fits their personality!
-  answers: {
-    0: "Devotion",           // Shane
-    1: "Protection",       // Chase
-    2: "Love that's earned",                   // Tate
-    3: "A love that feels like friendship first",                              // Kendall
-    4: "Raw passion",             // Kian
-    5: "Sincerity",          // Riley
-    6: "Energy that never gets boring",             // Ethan
-    7: "Deep emotional connection",              // Bradie
-    8: "Emotional safety",                     // Adrian
-    9: "Growth and ambition",                  // Kyren
-    10: "Gentleness",                // Thomas
-    11: "Genuine intention"                    // Cameron
-  }
+question: "If you had to choose one quality above all else, it would be…",
+
+// Write an answer for each character (0-11) that fits their personality!
+answers: {
+0: "Devotion", // Shane
+1: "Protection", // Chase
+2: "Love that's earned", // Tate
+3: "A love that feels like friendship first", // Kendall
+4: "Raw passion", // Kian
+5: "Sincerity", // Riley
+6: "Energy that never gets boring", // Ethan
+7: "Deep emotional connection", // Bradie
+8: "Emotional safety", // Adrian
+9: "Growth and ambition", // Kyren
+10: "Gentleness", // Thomas
+11: "Genuine intention" // Cameron
+}
 };
 
 let currentQuestion = 0;
@@ -665,182 +664,182 @@ let scores = [];
 let tiedCharacters = []; // Stores indices of tied characters
 
 function initScores() {
-  scores = new Array(characters.length).fill(0);
+scores = new Array(characters.length).fill(0);
 }
 
 function startQuiz() {
-  currentQuestion = 0;
-  answers = new Array(questions.length).fill(null);
-  tiedCharacters = [];
-  initScores();
-  
-  document.getElementById('startScreen').classList.add('hidden');
-  document.getElementById('resultsScreen').classList.add('hidden');
-  document.getElementById('tiebreakerScreen').classList.add('hidden');
-  document.getElementById('quizScreen').classList.remove('hidden');
-  document.getElementById('totalQ').textContent = questions.length;
-  
-  renderQuestion();
+currentQuestion = 0;
+answers = new Array(questions.length).fill(null);
+tiedCharacters = [];
+initScores();
+
+document.getElementById('startScreen').classList.add('hidden');
+document.getElementById('resultsScreen').classList.add('hidden');
+document.getElementById('tiebreakerScreen').classList.add('hidden');
+document.getElementById('quizScreen').classList.remove('hidden');
+document.getElementById('totalQ').textContent = questions.length;
+
+renderQuestion();
 }
 
 function renderQuestion() {
-  const q = questions[currentQuestion];
-  const letters = ['A', 'B', 'C', 'D'];
-  
-  document.getElementById('currentQ').textContent = currentQuestion + 1;
-  
-  const progress = ((currentQuestion) / questions.length) * 100;
-  document.getElementById('progressFill').style.width = progress + '%';
-  document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
-  
-  let html = `
-    <div class="question-number">Question ${currentQuestion + 1}</div>
-    <div class="question-text">${q.question}</div>
-    <div class="answers-list">
-  `;
-  
-  q.answers.forEach((answer, index) => {
-    const selected = answers[currentQuestion] === index ? 'selected' : '';
-    html += `
-      <div class="answer-option ${selected}" onclick="selectAnswer(${index})">
-        <span class="answer-letter">${letters[index]}</span>
-        <span class="answer-text">${answer.text}</span>
-      </div>
-    `;
-  });
-  
-  html += '</div>';
-  document.getElementById('questionCard').innerHTML = html;
-  
-  // Update navigation buttons
-  document.getElementById('prevBtn').disabled = currentQuestion === 0;
-  document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
-  document.getElementById('nextBtn').textContent = 
-    currentQuestion === questions.length - 1 ? 'See Results ♡' : 'Next →';
+const q = questions[currentQuestion];
+const letters = ['A', 'B', 'C', 'D'];
+
+document.getElementById('currentQ').textContent = currentQuestion + 1;
+
+const progress = ((currentQuestion) / questions.length) * 100;
+document.getElementById('progressFill').style.width = progress + '%';
+document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+
+let html = `
+<div class="question-number">Question ${currentQuestion + 1}</div>
+<div class="question-text">${q.question}</div>
+<div class="answers-list">
+`;
+
+q.answers.forEach((answer, index) => {
+const selected = answers[currentQuestion] === index ? 'selected' : '';
+html += `
+<div class="answer-option ${selected}" onclick="selectAnswer(${index})">
+<span class="answer-letter">${letters[index]}</span>
+<span class="answer-text">${answer.text}</span>
+</div>
+`;
+});
+
+html += '</div>';
+document.getElementById('questionCard').innerHTML = html;
+
+// Update navigation buttons
+document.getElementById('prevBtn').disabled = currentQuestion === 0;
+document.getElementById('nextBtn').disabled = answers[currentQuestion] === null;
+document.getElementById('nextBtn').textContent =
+currentQuestion === questions.length - 1 ? 'See Results ♡' : 'Next →';
 }
 
 function selectAnswer(index) {
-  answers[currentQuestion] = index;
-  
-  // Update visual selection
-  document.querySelectorAll('.answer-option').forEach((el, i) => {
-    el.classList.toggle('selected', i === index);
-  });
-  
-  document.getElementById('nextBtn').disabled = false;
+answers[currentQuestion] = index;
+
+// Update visual selection
+document.querySelectorAll('.answer-option').forEach((el, i) => {
+el.classList.toggle('selected', i === index);
+});
+
+document.getElementById('nextBtn').disabled = false;
 }
 
 function nextQuestion() {
-  if (currentQuestion < questions.length - 1) {
-    currentQuestion++;
-    renderQuestion();
-  } else {
-    calculateResults();
-  }
+if (currentQuestion < questions.length - 1) {
+currentQuestion++;
+renderQuestion();
+} else {
+calculateResults();
+}
 }
 
 function prevQuestion() {
-  if (currentQuestion > 0) {
-    currentQuestion--;
-    renderQuestion();
-  }
+if (currentQuestion > 0) {
+currentQuestion--;
+renderQuestion();
+}
 }
 
 function calculateResults() {
-  initScores();
-  
-  // Tally up points
-  answers.forEach((answerIndex, questionIndex) => {
-    if (answerIndex !== null) {
-      const characterIndex = questions[questionIndex].answers[answerIndex].points;
-      scores[characterIndex]++;
-    }
-  });
-  
-  // Find the highest score
-  const maxScore = Math.max(...scores);
-  
-  // Find ALL characters with that highest score
-  tiedCharacters = [];
-  scores.forEach((score, index) => {
-    if (score === maxScore) {
-      tiedCharacters.push(index);
-    }
-  });
-  
-  // If there's a tie, show tiebreaker! Otherwise show results
-  if (tiedCharacters.length > 1) {
-    showTiebreaker();
-  } else {
-    showResults(tiedCharacters[0]);
-  }
+initScores();
+
+// Tally up points
+answers.forEach((answerIndex, questionIndex) => {
+if (answerIndex !== null) {
+const characterIndex = questions[questionIndex].answers[answerIndex].points;
+scores[characterIndex]++;
+}
+});
+
+// Find the highest score
+const maxScore = Math.max(...scores);
+
+// Find ALL characters with that highest score
+tiedCharacters = [];
+scores.forEach((score, index) => {
+if (score === maxScore) {
+tiedCharacters.push(index);
+}
+});
+
+// If there's a tie, show tiebreaker! Otherwise show results
+if (tiedCharacters.length > 1) {
+showTiebreaker();
+} else {
+showResults(tiedCharacters[0]);
+}
 }
 
 function showTiebreaker() {
-  document.getElementById('quizScreen').classList.add('hidden');
-  
-  // Build the tiebreaker question with only the tied characters as options
-  const tiedNames = tiedCharacters.map(i => characters[i].name).join(' & ');
-  
-  let html = `
-    <div class="quiz-header">
-      <h1 class="quiz-title">It's a Tie!</h1>
-      <p class="quiz-subtitle">Your heart is torn between ${tiedNames}...</p>
-    </div>
-    
-    <div class="question-card">
-      <div class="question-number">~ Tiebreaker ~</div>
-      <div class="question-text">${tiebreakerQuestion.question}</div>
-      <div class="answers-list">
-  `;
-  
-  // Show only the tied characters as options with their tiebreaker answers
-  tiedCharacters.forEach((charIndex, i) => {
-    const letter = String.fromCharCode(65 + i); // A, B, C, D...
-    const answerText = tiebreakerQuestion.answers[charIndex] || `Choose ${characters[charIndex].name}`;
-    html += `
-      <div class="answer-option" onclick="selectTiebreaker(${charIndex})">
-        <span class="answer-letter">${letter}</span>
-        <span class="answer-text">${answerText}</span>
-      </div>
-    `;
-  });
-  
-  html += `
-      </div>
-    </div>
-  `;
-  
-  document.getElementById('tiebreakerScreen').innerHTML = html;
-  document.getElementById('tiebreakerScreen').classList.remove('hidden');
+document.getElementById('quizScreen').classList.add('hidden');
+
+// Build the tiebreaker question with only the tied characters as options
+const tiedNames = tiedCharacters.map(i => characters[i].name).join(' & ');
+
+let html = `
+<div class="quiz-header">
+<h1 class="quiz-title">It's a Tie!</h1>
+<p class="quiz-subtitle">Your heart is torn between ${tiedNames}...</p>
+</div>
+
+<div class="question-card">
+<div class="question-number">~ Tiebreaker ~</div>
+<div class="question-text">${tiebreakerQuestion.question}</div>
+<div class="answers-list">
+`;
+
+// Show only the tied characters as options with their tiebreaker answers
+tiedCharacters.forEach((charIndex, i) => {
+const letter = String.fromCharCode(65 + i); // A, B, C, D...
+const answerText = tiebreakerQuestion.answers[charIndex] || `Choose ${characters[charIndex].name}`;
+html += `
+<div class="answer-option" onclick="selectTiebreaker(${charIndex})">
+<span class="answer-letter">${letter}</span>
+<span class="answer-text">${answerText}</span>
+</div>
+`;
+});
+
+html += `
+</div>
+</div>
+`;
+
+document.getElementById('tiebreakerScreen').innerHTML = html;
+document.getElementById('tiebreakerScreen').classList.remove('hidden');
 }
 
 function selectTiebreaker(characterIndex) {
-  // Highlight selection briefly then show results
-  event.target.closest('.answer-option').classList.add('selected');
-  
-  setTimeout(() => {
-    showResults(characterIndex);
-  }, 400);
+// Highlight selection briefly then show results
+event.target.closest('.answer-option').classList.add('selected');
+
+setTimeout(() => {
+showResults(characterIndex);
+}, 400);
 }
 
 function showResults(characterIndex) {
-  const character = characters[characterIndex];
-  
-  document.getElementById('quizScreen').classList.add('hidden');
-  document.getElementById('tiebreakerScreen').classList.add('hidden');
-  
-  let html = `
-    <div class="results-card">
-      <div class="results-label">Your Lover Is...</div>
-      ${character.image ? `<img src="${character.image}" alt="${character.name}" class="results-image">` : ''}
-      <div class="results-character">${character.name}</div>
-      <div class="results-description">${character.description}</div>
-    </div>
-    <button class="restart-btn" onclick="startQuiz()">Take Quiz Again ♡</button>
-  `;
-  
-  document.getElementById('resultsScreen').innerHTML = html;
-  document.getElementById('resultsScreen').classList.remove('hidden');
+const character = characters[characterIndex];
+
+document.getElementById('quizScreen').classList.add('hidden');
+document.getElementById('tiebreakerScreen').classList.add('hidden');
+
+let html = `
+<div class="results-card">
+<div class="results-label">Your Lover Is...</div>
+${character.image ? `<img src="${character.image}" alt="${character.name}" class="results-image">` : ''}
+<div class="results-character">${character.name}</div>
+<div class="results-description">${character.description}</div>
+</div>
+<button class="restart-btn" onclick="startQuiz()">Take Quiz Again ♡</button>
+`;
+
+document.getElementById('resultsScreen').innerHTML = html;
+document.getElementById('resultsScreen').classList.remove('hidden');
 }
 </script>
